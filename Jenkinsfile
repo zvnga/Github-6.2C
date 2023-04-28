@@ -1,53 +1,74 @@
 pipeline{
     agent any
     environment {
-        DIRECTORY_PATH= "/Users/zungasiakalima/.jenkins/workspace/6.2 C O Github"
-        TESTING_ENVIRONMENT= "6.2 C O Github"
+        DIRECTORY_PATH= "/Users/zungasiakalima/.jenkins/workspace/my_first_pipeline"
+        TESTING_ENVIRONMENT= "my_first_pipeline"
         PRODUCTION_ENVIRONMENT= "Zunga"
     }
     stages{
-        stage('Build')
+        stage('Build'){
             steps{
-                echo "Build the code using Maven in order to compile and package it"
+                echo "Code has been built using Maven in order to compile and package it"
                 echo "$DIRECTORY_PATH"
-        
-        }
-        stage('Unit and Integration Tests'){
-            steps{
-                echo "Ensure code functions run as expected and application components work together "
-                echo "$TESTING_ENVIRONMENT"
-            } 
-        
-        }
-        stage('Code Analysis'){
-            steps{
-                echo "Use the code analysis tool 'SonarQube' to analyse the code and ensure it meets industry standards"
             } 
             post{
                 always{
-                    echo "analysing code"
+                    echo "Use Maven to copile and package code"
+                    echo "compile the code and generate any necessary artifacts"
+                }
+            }
+        }
+        stage('Unit and Integration Tests'){
+            steps{
+                echo "Unit and Integration Tests completed ensuring code functions run as expected and applications work together "
+                echo "$TESTING_ENVIRONMENT"
+            } 
+            post{
+                always{
+                    echo "unit tests"
+                    echo "integration tests"
+                }
+            }
+        }
+        stage('Code Analysis'){
+            steps{
+                echo "Code Analysis completed using 'SonarQube' ensuring it meets industry standards "
+            } 
+            post{
+                always{
+                    echo "check the quality of the code"
                 }
             }
         }
         stage('Security Scan'){
             steps{
-                echo "Perform a security on the code using the 'Nmap' security tool to identify any vulnerabilities"
-            } 
-                
-        }
-        stage('Deploy to Staging'){
-            steps{
-                echo "Deploy the action to the staging server AWS EC2"
-
-        }
-        stage('Integration Tests on Staging')
-            steps{
-                echo "Run integration tests on the staging environment"
-                echo "$PRODUCTION_ENVIRONMENT, deployment is done"
+                echo "Performed a security on the code using the 'Nmap' security tool to identify any vulnerabilities"
             } 
             post{
                 always{
-                    echo "Run integration tests $PRODUCTION_ENVIRONMENT"
+                    echo "Perform security scan using Nmap "
+                }
+            }
+        }
+        stage('Deploy to Staging'){
+            steps{
+                echo "Deploying the action to the staging server AWS EC2!"
+            } 
+            post{
+                always{
+                    echo "Deploying action"
+                }
+            }
+        }
+        stage('Integration Tests on Staging'){
+            steps{
+                echo "Ran integration tests on the staging environment"
+            } 
+            post{
+                always{
+                    echo "Ran integration staging tests"
+                }
+            }
         }
         stage('Deploy to Production'){
             steps{
@@ -56,11 +77,9 @@ pipeline{
             } 
             post{
                 always{
-                    echo "Deployed to production $PRODUCTION_ENVIRONMENT"
+                    echo "Deploy the code $PRODUCTION_ENVIRONMENT"
                 }
             }
         }
-    }
-}
     }
 }
