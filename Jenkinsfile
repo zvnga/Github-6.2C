@@ -57,8 +57,6 @@ pipeline{
             post{
                 always{
                     echo "Deployed to production $PRODUCTION_ENVIRONMENT"
-
-                    
                 }
             }
         }
