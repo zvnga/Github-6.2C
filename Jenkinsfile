@@ -27,6 +27,14 @@ pipeline{
                 always{
                     echo "unit tests"
                     echo "integration tests"
+            }
+            post{
+                success {
+                    mail to: "agnuzzemail@gmail.com", 
+                    subject: "Unit and Integration Status Email", 
+                    body: "Unit and Integration was successful!"
+                }
+                
                 }
             }
         }
