@@ -27,11 +27,7 @@ pipeline{
                 success{
                     mail to: "agnuzzemail@gmail.com", 
                     subject: "Unit and Integration Status Email", 
-                    body: "Unit and Integration was successful!"
-                    emailext attachLog: true,
-     body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}",
-     recipientProviders: [developers(), requestor()],
-     subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
+                    body: "Unit and Integration was successful! ${BUILD_LOG, maxLines, escapeHtml}"
                 }
 
             }
