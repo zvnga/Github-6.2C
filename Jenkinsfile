@@ -24,15 +24,10 @@ pipeline{
                 echo "$TESTING_ENVIRONMENT"
             } 
             post{
-                always{
-                    echo "unit tests"
-                    echo "integration tests"
-                    success {
+                success{
                     mail to: "agnuzzemail@gmail.com", 
                     subject: "Unit and Integration Status Email", 
                     body: "Unit and Integration was successful!"
-                }
-
                 }
             }
         }
