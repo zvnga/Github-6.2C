@@ -1,8 +1,8 @@
 pipeline{
     agent any
     environment {
-        DIRECTORY_PATH= "/Users/zungasiakalima/.jenkins/workspace/my_first_pipeline"
-        TESTING_ENVIRONMENT= "my_first_pipeline"
+        DIRECTORY_PATH= "/Users/zungasiakalima/.jenkins/workspace/6.2 C 0 Github"
+        TESTING_ENVIRONMENT= "6.2 C 0 Github"
         PRODUCTION_ENVIRONMENT= "Zunga"
     }
     stages{
