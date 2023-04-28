@@ -45,9 +45,11 @@ pipeline{
             steps{
                 echo "Performed a security on the code using the 'Nmap' security tool to identify any vulnerabilities"
             } 
-            post{
-                always{
-                    echo "Perform security scan using Nmap "
+             post{
+                success{
+                    mail to: "agnuzzemail@gmail.com", 
+                    subject: "Security Scan Status", 
+                    body: "Security Scan was successful!"
                 }
             }
         }
@@ -66,8 +68,10 @@ pipeline{
                 echo "Ran integration tests on the staging environment"
             } 
             post{
-                always{
-                    echo "Ran integration staging tests"
+                success{
+                    mail to: "agnuzzemail@gmail.com", 
+                    subject: "Integration Test Status", 
+                    body: "Integration Test Successful!"
                 }
             }
         }
