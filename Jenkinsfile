@@ -27,8 +27,7 @@ pipeline{
                 success{
                     mail to: "agnuzzemail@gmail.com", 
                     subject: "Unit and Integration Status Email", 
-                    body: "Unit and Integration was successful!", 
-                    ${BUILD_LOG, maxLines, escapeHtml}
+                    body: "Unit and Integration was successful!"
                 }
 
             }
